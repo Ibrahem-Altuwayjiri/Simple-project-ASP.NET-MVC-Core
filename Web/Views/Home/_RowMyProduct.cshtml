@@ -1,0 +1,35 @@
+﻿@model ViewMyProduct
+<div class=" card card-outline-primary m-2 p-2" >
+    <h4>
+        <span class="col-11">@Model.ProductName <span class="fs-6">(Unit Price: @Model.UnitPrice)</span></span>
+        <span class="col-1 badge rounded-pill bg-primary text-white" style="float:right">
+            <small>@Model.TotalPrice</small>
+        </span>
+    </h4>
+    <div class="card-text p-1">
+        @Model.ProductDescription
+    </div>
+   
+    <div >
+        <span class="col-6" style="float:right">
+            <form asp-action="AddToCart" method="post" style="float:right">
+
+                <input type="number" min="1" max="50" value="@Model.Quantity" asp-for="Quantity" />
+                <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+
+                <input type="submit" value="Update" class="btn btn-primary m-1" />
+            </form>
+        </span>
+        <span class="col-6" style="float:left">
+            <form asp-action="DeleteFromCart" method="post">
+
+                <input type="hidden" value="@Model.Quantity" asp-for="Quantity" />
+                <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+
+                <input type="submit" value="Delete" class="btn btn-danger m-1" />
+            </form>
+        </span>
+        
+    </div>
+
+</div>

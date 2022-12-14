@@ -1,0 +1,13 @@
+﻿@model InfoMyCart
+
+@{
+    ViewData["Title"] = "Order";
+}
+
+<h2>Total price: <span>@Model.TotalPriceCart</span></h2>
+@foreach (var product in Model.viewMyProduct ?? Enumerable.Empty<ViewMyProduct>())
+    {
+    //Order order = new Order { Product = product };
+    <partial name="_RowMyProduct" model="product" />
+   
+    }

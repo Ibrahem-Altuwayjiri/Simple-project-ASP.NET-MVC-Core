@@ -1,0 +1,32 @@
+﻿@model Product
+<div class=" card card-outline-primary m-2 p-2">
+    <h4>
+        <span class="col-11">@Model.Name</span>
+        <span class="col-1 badge rounded-pill bg-primary text-white" style="float:right">
+            <small>@Model.Price</small>
+        </span>
+    </h4>
+    <div class="card-text p-1">
+        @Model.Description
+    </div>
+    @{
+        Order order = new Order
+            {
+                ProductId = Model.ProductId,
+                Quantity = 1
+            };
+
+    }
+    <div >
+        <form asp-action="AddToCart" method="post"  style="float:right">
+
+            <input type="number" min="1" max="50" value="@order.Quantity" asp-for="@order.Quantity" />
+            <input type="hidden" asp-for="@order.ProductId" value="@order.ProductId" />
+
+            <input type="submit" value="Add" class="btn btn-primary m-2" />
+        </form>
+    </div>
+   
+
+
+</div>

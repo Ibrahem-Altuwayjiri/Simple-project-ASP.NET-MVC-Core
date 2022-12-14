@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model ProductView
+
+@foreach (var product in Model.ListOfProduct ?? Enumerable.Empty<Product>())
+    {
+    //Order order = new Order { Product = product };
+    <partial name="_RowForProduct" model="product" />
+    }
+    <div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @for (int numPage = 1; numPage <= Model.pagingInfo.TotalPages; numPage++)
+            {
+                <li class="page-item @(numPage == Model.pagingInfo.CurrentPage ? "active" : "") ">
+                    <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-currentPage="@numPage">@numPage</a>
+            </li>
+            }
+        </ul>
+
+    </nav>
+    </div>
